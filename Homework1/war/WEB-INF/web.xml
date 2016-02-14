@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<servlet>
+		<servlet-name>Homework1</servlet-name>
+		<servlet-class>homework1.Homework1Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Homework1</servlet-name>
+		<url-pattern>/homework1</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>homework1.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+	    <servlet-name>Login</servlet-name>
+	    <servlet-class>homework1.Homework1Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>Login</servlet-name>
+	    <url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	    <servlet-name>NewBlog</servlet-name>
+	    <servlet-class>homework1.Homework1Sign</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>NewBlog</servlet-name>
+	    <url-pattern>/newBlog</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	    <servlet-name>New</servlet-name>
+	    <jsp-file>/new.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>New</servlet-name>
+	    <url-pattern>/new</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+	    <servlet-name>Archive</servlet-name>
+	    <jsp-file>/archive.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>Archive</servlet-name>
+	    <url-pattern>/archive</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>MailUpdate</servlet-name>
+		<servlet-class>homework1.MailUpdate</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MailUpdate</servlet-name>
+		<url-pattern>cron/mailUpdate</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>BlogSubscribe</servlet-name>
+		<servlet-class>homework1.BlogSubscribe</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BlogSubscribe</servlet-name>
+		<url-pattern>/blogSubscribe</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>BlogUnsubscribe</servlet-name>
+		<servlet-class>homework1.BlogUnsubscribe</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BlogUnsubscribe</servlet-name>
+		<url-pattern>/blogUnsubscribe</url-pattern>
+	</servlet-mapping>
+	<filter>
+        <filter-name>ObjectifyFilter</filter-name>
+        <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+</filter>
+<filter-mapping>
+        <filter-name>ObjectifyFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+</filter-mapping>
+<security-constraint>
+    <web-resource-collection>
+        <web-resource-name>cron</web-resource-name>
+        <url-pattern>/cron/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+        <role-name>admin</role-name>
+    </auth-constraint>
+</security-constraint>
+</web-app>
