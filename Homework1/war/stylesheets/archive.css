@@ -1,0 +1,96 @@
+body {
+   background-color: #d2fbff;
+}
+
+IMG.displayed{
+	display: block;
+	margin-left: auto;
+	margin-right: auto 
+}
+	
+p.blogTitle{
+	text-align: center;
+	font-family: "Geneva";
+	font-size: 300%;
+	color: blue;
+	
+}
+
+#wrapper{
+	width: 250px;
+	height: 1000px;
+	overflow: auto;
+	padding: 10px;
+	float: left;
+	
+}
+
+#archiveWhole{
+	height: 5000px;
+}
+
+#wrapperArchive{
+	width: 250px;
+	height: 5000px;
+	overflow: auto;
+	padding: 10px;
+	float: left;
+	background-color: red;
+}
+
+#leftBuffer{
+	width: 50px;
+	float: left;
+	padding: 5px;
+	
+}
+
+#rightBuffer{
+	width: 50px;
+	float: left;
+	padding: 5px;
+}
+
+
+
+
+div.sideBar{
+	background-color: white;
+	text-align: center;
+	font-size: 200%;
+}
+
+#rightSection{
+	overflow: auto;
+	height: 5000px;
+}
+
+#blogPostBuffer{
+	width: 100px;
+	float: left;
+	padding: 5px;
+}
+
+#blogPosts{
+	padding: 10px;
+	float: left;
+}
+
+
+
+div.newBlogPost{
+	background-color: white;
+	width: 600px;
+}
+
+p.blogPostTitle{
+	font-size: 140%;
+}
+
+p.blogPostUser{
+	
+}
+
+p.blogPostDate{
+	font-size: 80%;
+}

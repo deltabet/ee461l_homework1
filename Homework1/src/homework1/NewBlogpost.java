@@ -45,7 +45,7 @@ public class NewBlogpost implements Comparable<NewBlogpost> {
     }
 
     public User getUser() {
-
+    
         return user;
 
     }

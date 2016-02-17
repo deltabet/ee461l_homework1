@@ -33,10 +33,17 @@
 <html>
 
   <head>
-   <link type="text/css" rel="stylesheet" href="/stylesheets/????????.css" />
+   <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
  </head>
  
    <body>
+   <p style = "text-align:center;">
+   <img class = "displayed" src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg" style="width:743px;height:404px; "></img>
+   </p>
+   <p class = "blogTitle">Mountain Blog Archive</p>
+   <div id = "archiveWhole">
+   <div id = "wrapper">
+   	<div id = "leftBuffer"></div>
   <%
 
     UserService userService = UserServiceFactory.getUserService();
@@ -51,30 +58,42 @@
 
 <p>
 
-<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
+<div id = "loginLink" class = "sideBar">
+<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">Sign out</a></p>
+</div>
+<div id = "homeLink" class = "sideBar">
 <a href = "/"> Home</a> </br>
+</div>
+<div id = "newLink" class = "sideBar">
 <a href = "/new"> New Post</a> </br>
-</br>
+</div>
 <%
+}
+    else{ %>
 
-    } else {
 
-%>
 
 <p>
-
+<div id = "loginLink" class = "sideBar">
 <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-<a href = "/"> Home</a> </br>
+</div>
+
 </p>
 </br>
-
-
+<div id = "homeLink" class = "sideBar">
+<a href = "/"> Home</a> </br>
+</div>
 <%
 
     }
 
 %>
+</div>
 
+</p>
+<div id = "rightSection">
+	<div id = "blogPostBuffer"></div>
+	<div id = "blogPosts">
 <%
 String homework1Name = request.getParameter("homework1Name");
 
@@ -119,10 +138,12 @@ if (homework1Name == null) {
                 pageContext.setAttribute("newBlogpost_date", newBlogpost.getDate());
 
                 %>
-                <p>${fn:escapeXml(newBlogpost_title)}</p></br>
-				<blockquote>${fn:escapeXml(newBlogpost_content)}</blockquote>
-                <p><b>User: ${fn:escapeXml(newBlogpost_user.nickname)}</b></p>
-				<p>Date posted: ${fn:escapeXml(newBlogpost_date)}</p></br>
+                <div class = "newBlogPost">
+                <p class = "blogPostTitle">${fn:escapeXml(newBlogpost_title)}</p>
+				<p class = "blogPostContent">${fn:escapeXml(newBlogpost_content)}</p>
+                <p class = "blogPostUser"><i>Posted by: ${fn:escapeXml(newBlogpost_user.nickname)}</i></p>
+				<p class = "blogPostDate"><i>Date posted: ${fn:escapeXml(newBlogpost_date)}</i></p></br>
+				</div>
 
             
 
@@ -133,7 +154,9 @@ if (homework1Name == null) {
     
 
 %>
-
+</div>
+</div>
+</div>
    
    
    </body>

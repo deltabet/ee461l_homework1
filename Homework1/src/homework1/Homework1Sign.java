@@ -83,7 +83,7 @@ public class Homework1Sign extends HttpServlet {
     	 for (NewBlogpost subscriber : subscribers){
          	System.out.println(subscriber.getContent());
          }
-        resp.sendRedirect("/homework1.jsp");
+        resp.sendRedirect("/");
 
     }
 

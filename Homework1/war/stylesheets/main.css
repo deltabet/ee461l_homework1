@@ -1,0 +1,98 @@
+body {
+   background-color: #d2fbff;
+}
+
+IMG.displayed{
+	display: block;
+	margin-left: auto;
+	margin-right: auto 
+}
+	
+p.blogTitle{
+	text-align: center;
+	font-family: "Geneva";
+	font-size: 300%;
+	color: blue;
+	
+}
+
+#wrapper{
+	width: 23%;
+	height: 1000px;
+	padding: 10px;
+	float: left;
+	
+}
+
+#leftBuffer{
+	width: 20%;
+	float: left;
+	padding: 5px;
+	height: 1000px;
+	background-color: #d2fbff;
+}
+
+#rightBuffer{
+	float: left;
+	padding: 5px;
+}
+
+
+#subscribeText{
+	text-align: center;
+}
+
+#sideBarSection{
+	padding: 10px;
+	height: 500px;
+}
+
+div.sideBar{
+	background-color: white;
+	width: 200px;
+	text-align: center;
+	font-size: 200%;
+	border-style: solid;
+	border-color: #d2fbff;
+	padding: 10px;
+}
+
+#rightSection{
+	overflow: auto;
+	float: left;
+	width: 70%;
+}
+
+#blogPostBuffer{
+	width: 10%;
+	float: left;
+	padding: 5px;
+}
+
+#blogPosts{
+	width: 60%;
+	padding: 10px;
+	float: left;
+}
+
+
+
+div.newBlogPost{
+	background-color: white;
+	width: 100%;
+	padding: 10px;
+	border-style: solid;
+	border-color: #d2fbff;
+}
+
+p.blogPostTitle{
+	font-size: 140%;
+}
+
+p.blogPostUser{
+	
+}
+
+p.blogPostDate{
+	font-size: 80%;
+}

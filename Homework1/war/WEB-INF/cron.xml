@@ -3,6 +3,6 @@
   <cron>
     <url>/cron/mailUpdate</url>
     <description>Mail out a report</description>
-    <schedule>every day 18:00</schedule>
+   <schedule>every day 11:00</schedule>
   </cron>
 </cronentries>

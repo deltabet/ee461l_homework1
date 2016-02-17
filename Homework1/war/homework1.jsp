@@ -37,59 +37,72 @@
 <html>
 
   <head>
-   <link type="text/css" rel="stylesheet" href="/stylesheets/????????.css" />
+   <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
  </head>
  
    <body>
-   Test: <%= MailUpdate.testCount %> </br>
+   <p style = "text-align:center;">
+   <img class = "displayed" src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg" style="width:743px;height:404px; "></img>
+   </p>
+   <p class = "blogTitle">Mountain Blog</p>
+   <!--   Test: <%= MailUpdate.testCount %> </br>
    Message: <%= MailUpdate.testString %>
-   Emails: <%= MailUpdate.testString2 %>
+   Emails: <%= MailUpdate.testString2 %> -->
+   
+   <div id = "wrapper">
+   	<div id = "leftBuffer"></div>
   <%
 
     UserService userService = UserServiceFactory.getUserService();
 
     User user = userService.getCurrentUser();
+    
 
     if (user != null) {
 
       pageContext.setAttribute("user", user);
+      
+      boolean isSubscribed = false;
+  	ObjectifyService.register(Subscriber.class);
+  	List<Subscriber> subscribers = ObjectifyService.ofy().load().type(Subscriber.class).list();
+  	Collections.sort(subscribers);
+
+  	for (Subscriber curUser : subscribers){
+  		if (user.getEmail().equals(curUser.getEmail())){
+  			isSubscribed = true;
+  			
+  		}
+  	} 
 
 %>
+<p id = "subscribeText" >Hello,
 
-<p>
+ <%=user.getNickname() %>
+ </br>
+<%if (isSubscribed){ %>
+	You are subscribed
+<%}else{ %>
+	You are not subscribed
+	<%} %>
 
-<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
-</br>
-<a href = "/new"> New Post</a> </br>
-<a href = "/archive"> Archives</a> </br>
+<div id = "sideBarSection">
+<div id = "loginLink" class = "sideBar">
+<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">Sign out</a>
+</div>
+
+ 
+<div id = "newLink" class = "sideBar">
+<a href = "/new"> New Post</a> 
+</div>
+<div id = "archiveLink" class = "sideBar">
+<a href = "/archive"> Archives</a> 
+</div>
 
 <%
-	boolean isSubscribed = false;
-	ObjectifyService.register(Subscriber.class);
-	List<Subscriber> subscribers = ObjectifyService.ofy().load().type(Subscriber.class).list();
-	Collections.sort(subscribers);
-	%>
-	
-	Current email: <%= user.getEmail() %>
-	Size: <%= subscribers.size() %>
-	<% 
-	for (Subscriber curUser : subscribers){
-		if (user.getEmail().equals(curUser.getEmail())){
-			isSubscribed = true;
-			%>
-			
-			1: <%= curUser.getEmail() %>
-			<% 
-		}
-	}
-%>
-	
-	Current email: <%= user.getEmail() %>
-	Size: <%= subscribers.size() %>
-	<% 
+
 	if (isSubscribed){
 		%> 
-		You are subscribed </br> 
+		
         <FORM NAME="blogUnsubscribe" ACTION="blogUnsubscribe" METHOD="POST">
             <INPUT TYPE="SUBMIT" VALUE="Unsubscribe">
         </FORM>
@@ -108,19 +121,27 @@
 %>
 
 <p>
-
+<div id = "loginLink" class = "sideBar">
 <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
+</div>
 
 </p>
 </br>
-
+<div id = "archiveLink" class = "sideBar">
 <a href = "/archive"> Archives</a> </br>
+</div>
 <%
 
     }
 
 %>
+</div>
+<div id = "rightBuffer"></div>
+</div>
 
+<div id = "rightSection">
+	<div id = "blogPostBuffer"></div>
+	<div id = "blogPosts">
 <%
 String homework1Name = request.getParameter("homework1Name");
 
@@ -171,10 +192,12 @@ if (homework1Name == null) {
                 pageContext.setAttribute("newBlogpost_date", newBlogpost.getDate());
 
                 %>
-                <p>${fn:escapeXml(newBlogpost_title)}</p></br>
-				<blockquote>${fn:escapeXml(newBlogpost_content)}</blockquote>
-                <p><b>User: ${fn:escapeXml(newBlogpost_user.nickname)}</b></p>
-				<p>Date posted: ${fn:escapeXml(newBlogpost_date)}</p></br>
+                <div class = "newBlogPost">
+                <p class = "blogPostTitle">${fn:escapeXml(newBlogpost_title)}</p>
+				<p class = "blogPostContent">${fn:escapeXml(newBlogpost_content)}</p>
+                <p class = "blogPostUser"><i>Posted by: ${fn:escapeXml(newBlogpost_user.nickname)}</i></p>
+				<p class = "blogPostDate"><i>Date posted: ${fn:escapeXml(newBlogpost_date)}</i></p></br>
+				</div>
 
             <%
 
@@ -183,7 +206,8 @@ if (homework1Name == null) {
     
 
 %>
-
+</div>
+</div>
    
    
    </body>

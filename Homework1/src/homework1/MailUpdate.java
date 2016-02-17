@@ -79,22 +79,20 @@ public void doGet(HttpServletRequest req, HttpServletResponse resp){
 	}*/
 	ObjectifyService.register(Subscriber.class);
 	List<Subscriber> subscribers = ObjectifyService.ofy().load().type(Subscriber.class).list();
-	if (subscribers.size() != 0){
+	if (subscribers.size() > 0){
 testCount = 1;
 		ObjectifyService.register(NewBlogpost.class);
 	    List<NewBlogpost> newBlogposts = ObjectifyService.ofy().load().type(NewBlogpost.class).list();   
 	    if (newBlogposts.size() > blogCount){
 testCount = 2;
 		    Collections.sort(newBlogposts); 
-		    String updateMessage = "";
+		    StringBuilder updateMessage = new StringBuilder();;
 		    for (int i = blogCount; i < newBlogposts.size(); i += 1){
-		    	updateMessage = updateMessage + "Title: " + newBlogposts.get(i).getTitle() + "\n"
-		    			+ newBlogposts.get(i).getContent() + "\n"
-		    			+ "User: " + newBlogposts.get(i).getUser().getEmail() + "\n"
-		    			+ "Date: " + newBlogposts.get(i).getDate() + "\n\n";
+		    		updateMessage.append(newBlogposts.get(i).getContent() + "<br />\n");
+		    		updateMessage.append("User: " + newBlogposts.get(i).getUser().getEmail() + "<br />\n");
+		    		updateMessage.append("Date: " + newBlogposts.get(i).getDate() + "<br />\n<br />\n");
 		    	blogCount += 1;
-		    }
-testString = updateMessage;		    
+		    }	    
 	    	InternetAddress[] cc = new InternetAddress[subscribers.size()];
 	    	String subscriberEmails = "";
 	    	for (int i = 0; i < subscribers.size(); i += 1){
@@ -110,10 +108,11 @@ testString2 = subscriberEmails;
 	    	Session session = Session.getDefaultInstance(props, null);
 	    	Message msg = new MimeMessage(session);
 	    	try{
+	    		String sendMessage = updateMessage.toString();
 	    		msg.setFrom(new InternetAddress("taiyi.o@gmail.com"));
 	    		msg.addRecipients(Message.RecipientType.CC, cc);
 	    		msg.setSubject("Updated subscription from Modular Conduit");
-	    		msg.setContent(updateMessage, "text/html");
+	    		msg.setContent(sendMessage, "text/html");
 	    		Transport.send(msg);
 	    	} catch (Exception e){
 	    		testCount = 2000;
